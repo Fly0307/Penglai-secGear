@@ -78,6 +78,7 @@ endif()
 
 if(${ENCLAVE} STREQUAL "PL")
 	if (NOT DEFINED SDK_PATH)
+		set(SDK_PATH ${PL_SDK_DEFAULT_PATH})
 		set(PLSDK ${PL_SDK_DEFAULT_PATH})
     else()
 		set(PLSDK ${SDK_PATH})

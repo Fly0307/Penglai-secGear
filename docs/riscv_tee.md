@@ -96,7 +96,7 @@ https://ipads.se.sjtu.edu.cn:1313/d/6a464e02cd3d4c1bafb0/
 
 ```shell
 cd ./secGear/debug
-cmake -DENABLE_ENC_KEY=1  -DCMAKE_BUILD_TYPE=Debug -DENCLAVE=PL -DSDK_PATH=root/dev/sdk -DSSL_PATH=/root/dev/sdk/penglai_sdk_ssl -DPL_SSLLIB_PATH=/opt/penglai/openssl .. && make && make install
+cmake -DENABLE_ENC_KEY=1  -DCMAKE_BUILD_TYPE=Debug -DENCLAVE=PL -DSDK_PATH=root/dev/sdk -DSSL_PATH=/root/dev/sdk/penglai_sdk_ssl .. && make && make install
 ```
 
 编译成功后，demo程序位于`./secGear/debug/bin`目录下，在执行`insmod penglai.ko`可直接运行除tls之外的demo。
@@ -121,7 +121,7 @@ cmake -DENABLE_ENC_KEY=1  -DCMAKE_BUILD_TYPE=Debug -DENCLAVE=PL -DSDK_PATH=root/
 
 在第一次执行后会生成一个由Enclave生成的enc_key用于加密通信，由于当前Enclave创建使用一次后会销毁，在生成enc_key后，重新的当前debug目录执行编译指令（由上一条ENABLE_ENC_KEY=1改为ENABLE_ENC_KEY=0） :
 ```shell
-cmake -DENABLE_ENC_KEY=0 -DCMAKE_BUILD_TYPE=Debug -DENCLAVE=PL -DSDK_PATH=/root/dev/sdk -DSSL_PATH=/root/dev/sdk/penglai_sdk_ssl -DPL_SSLLIB_PATH=/opt/penglai/openssl .. && make -j$(nproc) && make install
+cmake -DENABLE_ENC_KEY=0 -DCMAKE_BUILD_TYPE=Debug -DENCLAVE=PL -DSDK_PATH=/root/dev/sdk -DSSL_PATH=/root/dev/sdk/penglai_sdk_ssl .. && make -j$(nproc) && make install
 ```
 
 重新执行client和server程序
