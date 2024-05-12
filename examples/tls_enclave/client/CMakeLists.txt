@@ -24,9 +24,8 @@ if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.13.0")
     target_link_directories(${OUTPUT} PRIVATE 
 	    ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 endif()
-target_include_directories(${OUTPUT} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} /usr/local/openssl/include/)
 target_link_libraries(${OUTPUT} ssl crypto)
-
+target_include_directories(${OUTPUT} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${SSL_PATH}/include)
 set_target_properties(${OUTPUT} PROPERTIES SKIP_BUILD_RPATH TRUE)
 
 if(CC_SGX)

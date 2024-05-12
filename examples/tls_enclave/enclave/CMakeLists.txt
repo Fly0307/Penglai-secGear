@@ -21,9 +21,6 @@ set(SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/enclave_server.c)
 set(PRINT_LEVEL 3)
 add_definitions(-DPRINT_LEVEL=${PRINT_LEVEL})
 
-if(NOT IS_DIRECTORY ${PL_SSLLIB_PATH})
-    message(FATAL_ERROR "Please provide the correct PL_SSLLIB_PATH path")
-endif()
 
 if(CC_SGX)
     #set signed output
@@ -145,10 +142,10 @@ if(CC_PL)
         OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${OUTPUT}
         DEPENDS ${APP_C_OBJ} ${SOURCE_C_OBJS} ${SDK_APP_LIB} ${SDK_GM_LIB} ${MUSL_LIBC} ${GCC_LIB}
         COMMAND ld -static -L${CMAKE_LIBRARY_OUTPUT_DIRECTORY} -L${SDK_LIB_DIR} -L${MUSL_LIB_DIR} -L/usr/lib64
-            -L${PL_SSLLIB_PATH}/lib64 -lsgx_tsgxssl_crypto -lsgx_tsgxssl_ssl -lsgx_tsgxssl
+            -L${SSL_PATH}/lib64 -lsgx_tsgxssl_crypto -lsgx_tsgxssl_ssl -lsgx_tsgxssl
             -lpenglai-enclave-eapp -lpenglai-enclave-gm -lsecgear_tee -lc
             -o ${CMAKE_CURRENT_SOURCE_DIR}/${OUTPUT} ${APP_C_OBJ} ${SOURCE_C_OBJS} --start-group ${SECGEAR_TEE_LIB} ${SDK_APP_LIB} ${SDK_GM_LIB}
-            ${PL_SSLLIB_PATH}/lib64/libsgx_tsgxssl_ssl.a ${PL_SSLLIB_PATH}/lib64/libsgx_tsgxssl_crypto.a ${PL_SSLLIB_PATH}/lib64/libsgx_tsgxssl.a
+            ${SSL_PATH}/lib64/libsgx_tsgxssl_ssl.a ${SSL_PATH}/lib64/libsgx_tsgxssl_crypto.a ${SSL_PATH}/lib64/libsgx_tsgxssl.a
             ${MUSL_LIBC} ${GCC_LIB} --end-group -T ${SDK_PATH}/app.lds
         COMMAND chmod -x ${CMAKE_CURRENT_SOURCE_DIR}/${OUTPUT}
         COMMENT "generate penglai-ELF"
