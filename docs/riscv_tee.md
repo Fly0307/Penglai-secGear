@@ -114,6 +114,7 @@ insmod ~/penglai.ko
 1. 由主机拷贝至虚拟机：
 ```
 scp -P 12055 ./penglai_secGear_env-v1.0/penglai-ssl-1.0-1.riscv64.rpm root@localhost:~/
+rpm -ivh ~/penglai-ssl-1.0-1.riscv64.rpm
 ```
 2. 或者在虚拟机内下载安装：
 ```
