@@ -34,16 +34,14 @@ scp -P 12055 -r ./penglai_secGear_env-v1.0/opam.tar.gz root@localhost:~/
 
 2) 在虚拟机根目录（～/）下解压
 
-	tar -zxvf opam.tar.gz
+```shell
+tar -zxvf opam.tar.gz
+```
 
-3) 在～/.bashrc中添加如下环境变量并使其生效：
-```
-export PATH=/root/.opam/4.12.0/bin:$PATH
-```
-4) 安装cmake和openssl-devel
+3) 安装cmake和openssl
 
 ```
-yum install cmake openssl -y
+yum install cmake openssl openssl-devel -y
 ```
 
 #### 3. 编译 secGear 项目
@@ -114,6 +112,7 @@ insmod ~/penglai.ko
 1. 由主机拷贝至虚拟机：
 ```
 scp -P 12055 ./penglai_secGear_env-v1.0/penglai-ssl-1.0-1.riscv64.rpm root@localhost:~/
+rpm -ivh ~/penglai-ssl-1.0-1.riscv64.rpm
 ```
 2. 或者在虚拟机内下载安装：
 ```
