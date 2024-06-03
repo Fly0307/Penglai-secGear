@@ -1,5 +1,4 @@
 file_dir=`readlink -f ${BASH_SOURCE[0]}`
 export CC_SDK=`dirname $file_dir`
-export PATH=$PATH:$CC_SDK/bin/
+export PATH=$PATH:$CC_SDK/bin/:/root/.opam/4.12.0/bin:$PATH
 export LD_LIBRARY_PATH=/opt/penglai/openssl/lib64:$LD_LIBRARY_PATH
-export PATH=/root/.opam/4.12.0/bin:$PATH

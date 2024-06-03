@@ -58,7 +58,6 @@ if(CC_PL)
     if(${CMAKE_VERSION} VERSION_LESS "3.13.0")
         link_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
         link_directories(${SSL_PATH}/lib64)
-        # link_directories(${PL_SSLLIB_PATH}/lib64)
     endif()
     link_directories(${SSL_PATH}/lib64)
     add_executable(${OUTPUT} ${SOURCE_FILE} ${AUTO_FILES})
@@ -66,11 +65,10 @@ if(CC_PL)
 			${LOCAL_ROOT_PATH}/inc/host_inc
 			${LOCAL_ROOT_PATH}/inc/host_inc/penglai
 			${CMAKE_CURRENT_BINARY_DIR}
-            /usr/local/openssl/include/
+            ${SSL_PATH}/include
             )
     if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.13.0")
         target_link_directories(${OUTPUT} PRIVATE ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-        # target_link_directories(${OUTPUT} PRIVATE ${PL_SSLLIB_PATH}/lib64)
         target_link_directories(${OUTPUT} PRIVATE ${SSL_PATH}/lib64)
     endif()
     target_link_libraries(${OUTPUT} secgear pthread ssl crypto sgx_usgxssl)

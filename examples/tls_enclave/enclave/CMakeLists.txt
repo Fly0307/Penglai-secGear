@@ -21,9 +21,6 @@ set(SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/enclave_server.c)
 set(PRINT_LEVEL 3)
 add_definitions(-DPRINT_LEVEL=${PRINT_LEVEL})
 
-# if(NOT IS_DIRECTORY ${PL_SSLLIB_PATH})
-#     message(FATAL_ERROR "Please provide the correct PL_SSLLIB_PATH path")
-# endif()
 
 if(CC_SGX)
     #set signed output
